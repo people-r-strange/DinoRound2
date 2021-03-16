@@ -19,3 +19,15 @@ sunday_size <- comm_data_Sun %>%
   count(Timestamp) 
 
 write_xlsx(sunday_size, "sunday_size.xlsx") 
+
+Sunday_from_size <- comm_data_Sun %>%
+  select(Timestamp,from, to, location)%>%
+  group_by(from) %>%
+  summarize(count_from = n())
+
+Sunday_to_size <- comm_data_Sun %>%
+  select(Timestamp,from, to, location)%>%
+  group_by(to) %>%
+  summarize(count_to = n())
+  
+write_xlsx(Sunday_to_size, "Sunday_to_count.xlsx")
