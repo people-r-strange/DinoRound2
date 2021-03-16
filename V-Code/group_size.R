@@ -3,6 +3,7 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 library(hrbrthemes)
+library(writexl)
 
 #Read in communication Data 
 comm_data_Fri <- read_csv("DC2-data/Communication Data/comm-data-Fri.csv")
@@ -17,4 +18,4 @@ comm_data_Sun <- read_csv("DC2-data/Communication Data/comm-data-Sun.csv")
 sunday_size <- comm_data_Sun %>%
   count(Timestamp) 
 
-ggplot(sunday_size, aes(Timestamp, n)) + geom_point() + geom_line()
+write_xlsx(sunday_size, "sunday_size.xlsx") 
