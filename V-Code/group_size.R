@@ -2,6 +2,7 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(plotly)
+library(hrbrthemes)
 
 #Read in communication Data 
 comm_data_Fri <- read_csv("DC2-data/Communication Data/comm-data-Fri.csv")
@@ -13,6 +14,7 @@ comm_data_Sun <- read_csv("DC2-data/Communication Data/comm-data-Sun.csv")
 
 #size <- count(comm_data_Fri, from, sort = TRUE)
 
-sunday_group_size <- comm_data_Sun %>%
-  group_by(from) %>%
-  tally()
+sunday_size <- comm_data_Sun %>%
+  count(Timestamp) 
+
+ggplot(sunday_size, aes(Timestamp, n)) + geom_point() + geom_line()
