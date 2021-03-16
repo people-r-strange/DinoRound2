@@ -31,3 +31,28 @@ Sunday_to_size <- comm_data_Sun %>%
   summarize(count_to = n())
   
 write_xlsx(Sunday_to_size, "Sunday_to_count.xlsx")
+------------------------------------------------------------------------------------------------------------------
+length(comm_data_Sun$from)
+
+groups_sun <- comm_data_Sun %>%
+  group_by(from) %>%
+  summarize (n())
+
+groups_fri <- comm_data_Fri %>%
+  group_by(from) %>%
+  summarize (n())
+
+groups_sat <- comm_data_Sat %>%
+  group_by(from) %>%
+  summarize (n())
+
+ggplot(groups, aes(x = (from), y = as.numeric("n()"))) +
+  geom_histogram() +
+  theme_classic() +
+  labs(
+    x = "IDs",
+    y = "Count",
+    title = paste(
+      "Number of people in a group associated with specific ID"
+    )
+  )
